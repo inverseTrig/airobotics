@@ -21,8 +21,7 @@ void Teens( int number);
 *      without spaces, the English word for that number.         
 */
 
-void
-writeOnes( int oner) {
+void writeOnes( int oner) {
   switch (oner) {
     case 0: printf("zero"); break;
     case 1: printf("one"); break;
@@ -43,8 +42,7 @@ writeOnes( int oner) {
 *    English word for the number without spaces.
 */
 
-void
-writeTens( int tener) {
+void writeTens( int tener) {
   int tplace, oplace; 
 
   if(( tener >= 100 ) || ( tener < 0)) {
