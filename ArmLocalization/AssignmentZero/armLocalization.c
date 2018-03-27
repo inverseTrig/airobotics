@@ -9,19 +9,33 @@
 #include <math.h>
 
 void main() {
-    double alpha, beta, x, y;
-    double base = 1.0, l1 = 0.8, l2 = 0.8;
+    double alpha, beta, x, y, x_temp, y_temp;
+    double base = 100.0, l1 = 80.0, l2 = 80.0;
+    double limit = 7*M_PI/8;
+    int i, j;
+    int row = 80, column = 80;
 
-    /* Take user input for alpha and beta in radians. */
-    printf("Enter angle alpha in radians: ");
-    scanf("%lf", &alpha);
-    printf("Enter angle beta  in radians: ");
-    scanf("%lf", &beta);
+    for (i = 0; i < row; i++) {
+        beta = limit - i*(2*limit)/row;
+        for (j = 0; j < column; j++) {
+            alpha = -limit + i*(2*limit)/column;
 
-    /* Forward Kinematics equation derived in class */
-    x = -l2*sin(alpha + beta) - l1*sin(alpha);
-    y =  l2*cos(alpha + beta) + l1*cos(alpha) + base;
+            x = -l2*sin(alpha + beta) - l1*sin(alpha);
+            y =  l2*cos(alpha + beta) + l1*cos(alpha) + base;
 
-    printf("Current x, y position is: (%6.4lf, %6.4lf).\n", x, y);
+            if (y < 0) { printf("0"); }
+            else if (y < base) {
+                x_temp = l1*sin(alpha);
+                if (x * x_temp < 0) {
+                    printf("0");
+                } else {
+                    printf("1");
+                }
+            } else {
+                printf("1");
+            }
+        }
+        printf("\n");
+    }
 
 }
