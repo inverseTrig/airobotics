@@ -1,7 +1,7 @@
 /***************************************************
  * HeeChan Kang
  * CSC 431 - AI Robotics
- * Assignment Zero - Arm Localization
+ * Assignment Two - configSpaceMap
  ***************************************************/
 
 #include <stdio.h>
@@ -33,10 +33,15 @@ int checkAngle (double alpha, double beta) {
     x = -l2*sin(alpha + beta) - l1*sin(alpha);
     y =  l2*cos(alpha + beta) + l1*cos(alpha) + base;
 
+    /* Check if arm goes underground. */
     if (y < 0) { return 0; }
+    /* Check if arm crosses its base. */
     if (y < base) {
+		/* Compute location of "elbow". */
         x_temp = l1*cos(alpha + M_PI/2);
+        /* Value is negative if "elbow" and "wrist" is on the opposite side. */
         if (x * x_temp < 0) { return 0; }
     }
+    /* Otherwise, we are good to go. */
     return 1;
 }
