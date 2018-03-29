@@ -128,10 +128,10 @@ void loop()
         angle = 10;
         if (rightDistance < index) {
             _mleft();
-            delay(100);
+            delay(125);
         } else {
             _mright();
-            delay(100);
+            delay(125);
         }
         index = rightDistance;
     }
@@ -139,10 +139,10 @@ void loop()
         angle = 180;
         if (leftDistance < index) {
             _mright();
-            delay(100);
+            delay(125);
         } else {
             _mleft();
-            delay(100);
+            delay(125);
         }
         index = leftDistance;
     }
