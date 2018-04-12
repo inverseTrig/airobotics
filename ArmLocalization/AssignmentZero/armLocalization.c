@@ -15,6 +15,9 @@ void main() {
     int i, j;
     int row = 80, column = 80;
 
+    FILE *fp;
+    fp = fopen("/home/heechan/Desktop/test.txt", "w");
+
     for (i = 0; i < row; i++) {
         beta = limit - i*(2*limit)/row;
         for (j = 0; j < column; j++) {
@@ -23,19 +26,19 @@ void main() {
             x = -l2*sin(alpha + beta) - l1*sin(alpha);
             y =  l2*cos(alpha + beta) + l1*cos(alpha) + base;
 
-            if (y < 0) { printf("0"); }
+            if (y < 0) { fprintf(fp, "0"); }
             else if (y < base) {
                 x_temp = l1*sin(alpha);
                 if (x * x_temp < 0) {
-                    printf("0");
+                    fprintf(fp, "0");
                 } else {
-                    printf("1");
+                    fprintf(fp, "1");
                 }
             } else {
-                printf("1");
+                fprintf(fp, "1");
             }
         }
-        printf("\n");
+        fprintf(fp, "\n");
     }
-
+    fclose(fp);
 }
