@@ -63,6 +63,13 @@ void _mStop()
     digitalWrite(ENB, LOW);
     Serial.println("Stop!");
 }
+
+void increment(int pointer)
+{
+	short value = EEPROM.read(pointer):
+	value++;
+	EEPROM.write(pointer.value);
+}
 /*Ultrasonic distance measurement Sub function*/
 int Distance_test()
 {
@@ -122,20 +129,20 @@ void loop()
         leftDistance = leftDistanceTest();
         if (rightDistance < leftDistance) {     // HAVE TO TURN LEFT!!
             _mleft();
-            EEPROM.write(i, 1);
+            //EEPROM.write(i, 1);
             index = 0;
             rightDistance = 0;
             leftDistance = 0;
             delay(750);
         } else {                                // HAVE TO TURN RIGHT!!
             _mright();
-            EEPROM.write(i, 2);
+            //EEPROM.write(i, 2);
             index = 0;
             rightDistance = 0;
             leftDistance = 0;
             delay(750);
         }
-        i++;
+        //i++;
         _mStop();
     } else {
         rightDistance = rightDistanceTest();
@@ -175,9 +182,8 @@ void loop()
             index = leftDistance;
         }
         _mForward();
-        if (isWrite == 1 && i < 256) {
-          EEPROM.write(i, 9);
-          i++;
+        if (isWrite == 1) {
+          increment(i);
         }
         delay(250);
     }
